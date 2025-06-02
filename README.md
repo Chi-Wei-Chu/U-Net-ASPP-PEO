@@ -27,6 +27,7 @@ Researchers interested in using our trained model for pore segmentation in PEO c
 
 2. Copy and run the inference code provided in the [`PEO coating segmentation`](https://github.com/Chi-Wei-Chu/U-Net-ASPP-PEO/blob/main/PEO%20coating%20segmentation) script.
 
+📌 Remember to insert the correct **Model path**, **Image path**, and **Save path**.
 📌 This project was tested with **Python 3.11.11**. The used libraries are listed below:
 
 keras==3.6.0
