@@ -25,4 +25,4 @@ Researchers interested in using our trained model for pore segmentation in PEO c
 1. Download the trained Keras model file:  
    📥 [Direct Download (model.keras)](https://drive.google.com/uc?export=download&id=1_IejbF5LSs8bOgJJdlCHCfl_AXI8H7Y8)
 
-2. Copy and run the inference code provided in the [`PEO coating segmentation`](./path/to/inference_script.py) script.
+2. Copy and run the inference code provided in the [`PEO coating segmentation`](https://github.com/Chi-Wei-Chu/U-Net-ASPP-PEO/blob/main/PEO%20coating%20segmentation) script.
