@@ -1,0 +1,74 @@
+import os
+from skimage.io import imread, imshow
+import numpy as np
+import keras
+from keras.models import load_model
+from PIL import Image
+
+##### Load the model #####
+
+def f1_score(y_true, y_pred):
+    true_positives = tf.keras.backend.sum(tf.keras.backend.round(tf.keras.backend.clip(y_true * y_pred, 0, 1)))
+    predicted_positives = tf.keras.backend.sum(tf.keras.backend.round(tf.keras.backend.clip(y_pred, 0, 1)))
+    possible_positives = tf.keras.backend.sum(tf.keras.backend.round(tf.keras.backend.clip(y_true, 0, 1)))
+
+    precision = true_positives / (predicted_positives + tf.keras.backend.epsilon())
+    recall = true_positives / (possible_positives + tf.keras.backend.epsilon())
+
+    f1 = 2 * (precision * recall) / (precision + recall + tf.keras.backend.epsilon())
+    return f1
+
+
+def IoU(y_true, y_pred):
+    # Clip predictions and ground truths to binary values (0 or 1)
+    y_true = tf.keras.backend.round(tf.keras.backend.clip(y_true, 0, 1))
+    y_pred = tf.keras.backend.round(tf.keras.backend.clip(y_pred, 0, 1))
+
+    # Calculate the intersection and union
+    intersection = tf.keras.backend.sum(y_true * y_pred)
+    union = tf.keras.backend.sum(y_true) + tf.keras.backend.sum(y_pred) - intersection
+
+    # Calculate IoU
+    iou = intersection / (union + tf.keras.backend.epsilon())
+
+    return iou
+
+# Allow deserialization of Lambda layers with lambda functions
+keras.config.enable_unsafe_deserialization()
+
+model_path = "/Model file path/"
+loaded_model = load_model(model_path, custom_objects={'f1_score': f1_score, 'IoU': IoU})
+
+##### IMAGE SEGMENTATION #####
+TODO_PATH = '/Image path/'
+SAVE_PATH = '/Save path/'
+
+for image_name in os.listdir(TODO_PATH):
+    if image_name.endswith('.jpg'):  # check if the file is an image
+        image_path = os.path.join(TODO_PATH, image_name)
+        print(f'Processing {image_name}...')
+
+        img = imread(image_path)
+        img = img.astype(np.uint8)
+        img = np.expand_dims(img, axis=0) # (1,800,800)
+        img = np.expand_dims(img, axis=-1) # (1,800,800,1)
+
+        # Make prediction using the model
+        prediction = loaded_model.predict(img)
+        binary_mask = prediction > 0.5
+        binary_mask = binary_mask[0]  # making the shape from (1, 800, 800, 3) to (800, 800, 1)
+
+        ##### SAVE THE MASK #####
+        mask_save_path = SAVE_PATH + image_name
+        print("Image save pave:", mask_save_path)
+
+        # Save the binary_mask as an image
+        binary_mask_uint8 = (binary_mask*255).astype(np.uint8)  # Multiply by 255 to convert from boolean to uint8 (high contrast)
+        binary_mask_2d = np.squeeze(binary_mask_uint8, axis=2)
+
+        # Convert the NumPy array to a PIL Image
+        binary_mask_pil = Image.fromarray(binary_mask_2d)
+        binary_mask_pil.save(mask_save_path)
+
+        print('finish')
+        print('----------------')
