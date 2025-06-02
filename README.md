@@ -26,3 +26,11 @@ Researchers interested in using our trained model for pore segmentation in PEO c
    📥 [Direct Download (model.keras)](https://drive.google.com/uc?export=download&id=1_IejbF5LSs8bOgJJdlCHCfl_AXI8H7Y8)
 
 2. Copy and run the inference code provided in the [`PEO coating segmentation`](https://github.com/Chi-Wei-Chu/U-Net-ASPP-PEO/blob/main/PEO%20coating%20segmentation) script.
+
+📌 This project was tested with **Python 3.11.11**.  
+Please create a matching environment before installing dependencies:
+
+```bash
+python -m venv venv
+source venv/bin/activate    # On Windows: .\venv\Scripts\activate
+pip install -r requirements.txt
