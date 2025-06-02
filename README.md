@@ -16,6 +16,9 @@ This study uses a dataset of 200 annotated SEM images of Plasma Electrolytic Oxi
   [Google Drive link](https://drive.google.com/drive/folders/1TA9XAipXuTeZOXL-kHosGFEmb7UryPmN?usp=sharing)
 
 
-
 If you use this dataset, please cite this repository or contact the authors for further information.
 
+## The Trained PEO Coating Segmentation Model
+
+For the researchers in this field who would like to directly use our model for pore position segmentation, please copy the code in the "PEO coating segmentation" file and download the keras file in the like: 
+[Google Drive link](https://drive.google.com/file/d/1_IejbF5LSs8bOgJJdlCHCfl_AXI8H7Y8/view?usp=drive_link)
