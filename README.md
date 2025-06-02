@@ -20,5 +20,9 @@ If you use this dataset, please cite this repository or contact the authors for 
 
 ## The Trained PEO Coating Segmentation Model
 
-For the researchers in this field who would like to use our model for pore position segmentation directly, please copy the code in the "PEO coating segmentation" file and download the Keras file in the link: 
-[Google Drive link](https://drive.google.com/file/d/1_IejbF5LSs8bOgJJdlCHCfl_AXI8H7Y8/view?usp=drive_link)
+Researchers interested in using our trained model for pore segmentation in PEO coatings can do the following:
+
+1. Download the trained Keras model file:  
+   📥 [Direct Download (model.keras)](https://drive.google.com/uc?export=download&id=1_IejbF5LSs8bOgJJdlCHCfl_AXI8H7Y8)
+
+2. Copy and run the inference code provided in the [`PEO coating segmentation`](./path/to/inference_script.py) script.
