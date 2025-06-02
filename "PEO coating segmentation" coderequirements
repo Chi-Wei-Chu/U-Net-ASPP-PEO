@@ -1,0 +1,5 @@
+python=3.11.11
+keras=3.6.0 
+numpy==1.26.4
+scikit-image==0.25.0 
+Pillow==11.1.0
